@@ -16,7 +16,7 @@ const Input = ({ placeholder, label, type = "text", ...props }: InputProps) => {
     <div className="flex flex-col gap-1 w-full">
       <div className="relative">
         {label && (
-          <label className="absolute left-3 top-3 text-secondary-dark text-sm">
+          <label className="absolute left-3 top-3 ml-3.5 text-secondary-dark text-sm">
             {label}
           </label>
         )}
