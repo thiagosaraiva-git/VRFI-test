@@ -25,7 +25,8 @@ export default {
         },
       },
       boxShadow: {
-        custom: "0px 10px 20px 0px #7B899E1A",
+        dark: "0px 10px 20px 0px #7B899E1A",
+        light: "0px 6px 12px 0px #8E989D14",
       },
     },
   },

@@ -9,7 +9,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   type: "text" | "password";
 }
 
-const Input = ({ placeholder, label, type = "text", ...props }: InputProps) => {
+const Input = ({ placeholder, label, type = "text" }: InputProps) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -21,9 +21,8 @@ const Input = ({ placeholder, label, type = "text", ...props }: InputProps) => {
           </label>
         )}
         <input
-          {...props}
           type={type === "password" && showPassword ? "text" : type}
-          className={`w-full border border-secondary rounded-[20px] text-primary-dark outline-none focus:border-primary-dark p-6 shadow-custom ${label && "pt-8"} placeholder:text-secondary-dark`}
+          className={`w-full border border-secondary rounded-[20px] text-primary-dark outline-none focus:border-primary-dark p-6 shadow-dark ${label && "pt-8"} placeholder:text-secondary-dark`}
           placeholder={!label ? placeholder : ""}
         />
         {type === "password" && (
