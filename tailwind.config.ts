@@ -24,6 +24,9 @@ export default {
           gradient: "linear-gradient(to right, #6700E9, #D83AFF)",
         },
       },
+      boxShadow: {
+        custom: "0px 10px 20px 0px #7B899E1A",
+      },
     },
   },
   plugins: [],

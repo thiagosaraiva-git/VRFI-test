@@ -17,7 +17,7 @@ const Input = ({ placeholder, type = "text", ...props }: InputProps) => {
         <input
           {...props}
           type={type === "password" && showPassword ? "text" : type}
-          className="w-full border border-secondary rounded-[20px] text-primary-dark outline-none focus:border-primary-dark p-6"
+          className="w-full border border-secondary rounded-[20px] text-primary-dark outline-none focus:border-primary-dark p-6 shadow-custom"
           placeholder={placeholder}
         />
         {type === "password" && (
