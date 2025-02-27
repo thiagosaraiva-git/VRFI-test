@@ -17,18 +17,20 @@ const Navbar = () => {
           <p className="text-sm">Edit Profile</p>
         </div>
       </div>
-      <div className="flex items-center justify-start p-6 mt-4 rounded-lg">
-        <div className="relative bg-primary-light rounded-full w-12 h-12 flex items-center justify-center">
-          <Image
-            src="/icons/map.svg"
-            alt="Countries"
-            width={20}
-            height={20}
-            className="text-white"
-          />
+      <Link href="/dashboard">
+        <div className="flex items-center justify-start p-6 mt-4 rounded-lg cursor-pointer">
+          <div className="relative bg-primary-light rounded-full w-12 h-12 flex items-center justify-center">
+            <Image
+              src="/icons/map.svg"
+              alt="Countries"
+              width={20}
+              height={20}
+              className="text-white"
+            />
+          </div>
+          <div className="ml-4 text-lg font-semibold">Countries</div>
         </div>
-        <div className="ml-4 text-lg font-semibold">Countries</div>
-      </div>
+      </Link>
       <div className="absolute bottom-6 w-full text-center">
         <Link
           href="/"
