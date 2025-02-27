@@ -18,10 +18,9 @@ export function useLogin() {
     if (!validateEmail(email)) {
       alert("Please enter a valid email address.");
       return;
-    } 
+    }
 
     console.log("Logging in with:", { email, password });
-    
   };
 
   return {

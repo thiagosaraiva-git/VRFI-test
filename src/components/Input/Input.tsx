@@ -3,7 +3,8 @@
 import { InputHTMLAttributes, useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 
-interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+interface InputProps
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange"> {
   placeholder: string;
   label?: string;
   type: "text" | "password";
@@ -11,7 +12,13 @@ interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChan
   onChange: (value: string) => void;
 }
 
-const Input = ({ placeholder, label, type = "text", value, onChange }: InputProps) => {
+const Input = ({
+  placeholder,
+  label,
+  type = "text",
+  value,
+  onChange,
+}: InputProps) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
