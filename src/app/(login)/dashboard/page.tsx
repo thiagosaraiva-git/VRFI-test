@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useCountry } from "@/hooks/useCountry";
 import Table from "@/components/Table/Table";
 

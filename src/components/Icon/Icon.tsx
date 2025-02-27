@@ -1,5 +1,3 @@
-import microsoft from "@/icons/microsoft.svg";
-import google from "@/icons/google.svg";
 import Image from "next/image";
 
 interface IconProps {
@@ -9,9 +7,11 @@ interface IconProps {
 const Icon = ({ data }: IconProps) => {
   return (
     <Image
-      src={data === "microsoft" ? microsoft : google}
+      src={`/icons/${data}.svg`}
       alt={data}
       className="w-6 h-6"
+      width={24}
+      height={24}
     />
   );
 };
