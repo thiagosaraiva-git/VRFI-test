@@ -3,13 +3,15 @@
 import { InputHTMLAttributes, useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   placeholder: string;
   label?: string;
   type: "text" | "password";
+  value: string;
+  onChange: (value: string) => void;
 }
 
-const Input = ({ placeholder, label, type = "text" }: InputProps) => {
+const Input = ({ placeholder, label, type = "text", value, onChange }: InputProps) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -22,8 +24,12 @@ const Input = ({ placeholder, label, type = "text" }: InputProps) => {
         )}
         <input
           type={type === "password" && showPassword ? "text" : type}
-          className={`w-full border border-secondary rounded-[20px] text-primary-dark outline-none focus:border-primary-dark p-6 shadow-light focus:shadow-dark ${label && "pt-8"} placeholder:text-secondary-dark`}
+          className={`w-full border border-secondary rounded-[20px] text-primary-dark outline-none focus:border-primary-dark p-6 shadow-light focus:shadow-dark ${
+            label && "pt-8"
+          } placeholder:text-secondary-dark`}
           placeholder={!label ? placeholder : ""}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
         />
         {type === "password" && (
           <button

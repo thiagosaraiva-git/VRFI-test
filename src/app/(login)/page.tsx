@@ -1,7 +1,12 @@
+'use client';
+
 import Button from "@/components/Button/Button";
 import Input from "@/components/Input/Input";
+import { useLogin } from "@/hooks/useLogin";
 
 export default function Login() {
+  const { email, setEmail, password, setPassword, handleLogin } = useLogin();
+
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="w-full flex flex-col xl:flex-row bg-white overflow-hidden">
@@ -17,8 +22,8 @@ export default function Login() {
 
           <div className="my-6 h-[1px] w-full bg-secondary-dark" />
 
-          <Input placeholder="Email Address" type="text" />
-          <Input placeholder="Password" type="password" />
+          <Input placeholder="Email Address" type="text" value={email} onChange={setEmail}/>
+          <Input placeholder="Password" type="password" value={password} onChange={setPassword} />
           <Button text="Log In" bgColor="bg-primary-dark" onClick={() => handleLogin()} />
         </div>
 
