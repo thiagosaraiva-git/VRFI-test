@@ -9,44 +9,45 @@ const Table = ({ data }: TableProps) => {
   return (
     <div className="max-w-4xl mx-auto p-4">
       <div className="overflow-x-auto">
-        <table className="w-full border-collapse border border-primary-light">
-          <thead>
-            <tr className="bg-primary-dark text-secondary-light">
-              <th className="border border-primary-light px-4 py-2 text-left">
-                Country Identifier
-              </th>
-              <th className="border border-primary-light px-4 py-2 text-left">
-                Country
-              </th>
-              <th className="border border-primary-light px-4 py-2 text-left">
-                Continent
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((country, index) => (
-              <tr
+        <div className="w-full">
+          <div className="flex text-secondary-dark mb-4 ml-12 space-x-4">
+            <div className="py-2 text-left w-1/4">Country Identifier</div>
+            <div className="py-2 text-left w-1/4">Country</div>
+            <div className="pl-9 py-2 text-left w-1/4">Continent</div>
+          </div>
+
+          {data.length === 0 ? (
+            <div className="text-center text-secondary-dark py-4">
+              No data found
+            </div>
+          ) : (
+            data.map((country, index) => (
+              <div
                 key={index}
-                className="odd:bg-secondary-light even:bg-primary-light"
+                className="flex bg-white font-semibold shadow-light hover:shadow-dark hover:cursor-pointer rounded-[20px] mb-4 p-4 space-x-12 items-center"
               >
-                <td className="border border-primary-light px-4 py-2">
-                  <Image
-                    src={country.flags.png}
-                    alt={country.name.common}
-                    width={30}
-                    height={20}
-                  />
-                </td>
-                <td className="border border-primary-light px-4 py-2 text-secondary-dark">
+                <div className="flex items-center w-1/4">
+                  <div className="w-12 h-12 rounded-full bg-secondary-light flex justify-center items-center ml-12">
+                    <Image
+                      src={country.flags.png}
+                      alt={country.name.common}
+                      width={30}
+                      height={20}
+                    />
+                  </div>
+                </div>
+
+                <div className="w-1/4 text-secondary-dark flex">
                   {country.name.common}
-                </td>
-                <td className="border border-primary-light px-4 py-2 text-secondary-dark">
+                </div>
+
+                <div className="w-1/4 text-secondary-dark flex">
                   {country.region}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
       </div>
     </div>
   );

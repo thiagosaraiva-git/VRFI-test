@@ -8,20 +8,36 @@ export function useCountry() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchCountries = async () => {
-      try {
-        const data = await api({ endpoint: "/all?fields=flags,name,region" });
-        setCountries(data);
-      } catch (err: any) {
-        setError(err.message || "Error fetching countries");
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchCountries = async () => {
+    try {
+      const data = await api({ endpoint: "/all?fields=flags,name,region" });
+      setCountries(data);
+    } catch (err: any) {
+      setError(err.message || "Error fetching countries");
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchCountries();
   }, []);
 
-  return { countries, loading, error };
+  const searchCountries = async (query: string) => {
+    if (!query) {
+      fetchCountries();
+      return;
+    }
+    try {
+      const data = await api({ endpoint: `/name/${query}` });
+      setError(null);
+      setCountries(data);
+    } catch (err: any) {
+      setError(err.message || "Error fetching countries");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { countries, searchCountries, loading, error };
 }
