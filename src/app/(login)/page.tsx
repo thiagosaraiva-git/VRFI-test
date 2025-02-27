@@ -52,13 +52,15 @@ export default function Login() {
 
         <div className="hidden xl:flex w-1/2 min-h-screen bg-gradient text-white flex-col p-20 rounded-[40px]">
           <div className="space-y-6 mt-10">
-            <h1 className="text-4xl font-bold">The simplest way to track and manage  your geographical data</h1>
+            <h1 className="text-4xl font-bold">
+              The simplest way to track and manage your geographical data
+            </h1>
             <p className="text-xl mt-4">
               Enter your credentials and access your account
             </p>
           </div>
           <div className="items-center justify-center">
-           <LoginImages />
+            <LoginImages />
           </div>
         </div>
       </div>
