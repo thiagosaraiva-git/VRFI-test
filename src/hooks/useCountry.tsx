@@ -5,15 +5,32 @@ import { useState, useEffect } from "react";
 
 export function useCountry() {
   const [countries, setCountries] = useState<Country[]>([]);
+  const [country, setCountry] = useState<Country | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Fetch all countries
   const fetchCountries = async () => {
     try {
       const data = await api({ endpoint: "/all?fields=flags,name,region" });
       setCountries(data);
     } catch (err: any) {
       setError(err.message || "Error fetching countries");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Fetch details of a specific country by name
+  const fetchCountryDetails = async (countryName: string) => {
+    setLoading(true);
+    try {
+      const data = await api({
+        endpoint: `/name/${countryName}?fullText=true`,
+      });
+      setCountry(data && data[0]);
+    } catch (err: any) {
+      setError(err.message || "Error fetching country details");
     } finally {
       setLoading(false);
     }
@@ -39,5 +56,12 @@ export function useCountry() {
     }
   };
 
-  return { countries, searchCountries, loading, error };
+  return {
+    countries,
+    country,
+    fetchCountryDetails,
+    searchCountries,
+    loading,
+    error,
+  };
 }

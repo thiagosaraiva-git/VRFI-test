@@ -1,5 +1,6 @@
 import { Country } from "@/types/country";
 import Image from "next/image";
+import Link from "next/link";
 
 interface TableProps {
   data: Country[];
@@ -22,29 +23,31 @@ const Table = ({ data }: TableProps) => {
             </div>
           ) : (
             data.map((country, index) => (
-              <div
+              <Link
                 key={index}
-                className="flex bg-white font-semibold shadow-light hover:shadow-dark hover:cursor-pointer rounded-[20px] mb-4 p-4 space-x-12 items-center"
+                href={`dashboard/country?name=${country.name.common}`}
               >
-                <div className="flex items-center w-1/4">
-                  <div className="w-12 h-12 rounded-full bg-secondary-light flex justify-center items-center ml-12">
-                    <Image
-                      src={country.flags.png}
-                      alt={country.name.common}
-                      width={30}
-                      height={20}
-                    />
+                <div className="flex bg-white font-semibold shadow-light hover:shadow-dark hover:cursor-pointer rounded-[20px] mb-4 p-4 space-x-12 items-center">
+                  <div className="flex items-center w-1/4">
+                    <div className="w-12 h-12 rounded-full bg-secondary-light flex justify-center items-center ml-12">
+                      <Image
+                        src={country.flags.png}
+                        alt={country.name.common}
+                        width={30}
+                        height={20}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="w-1/4 text-secondary-dark flex">
+                    {country.name.common}
+                  </div>
+
+                  <div className="w-1/4 text-secondary-dark flex">
+                    {country.region}
                   </div>
                 </div>
-
-                <div className="w-1/4 text-secondary-dark flex">
-                  {country.name.common}
-                </div>
-
-                <div className="w-1/4 text-secondary-dark flex">
-                  {country.region}
-                </div>
-              </div>
+              </Link>
             ))
           )}
         </div>
