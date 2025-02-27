@@ -1,12 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { api } from "@/api/api";
+import { Country } from "@/types/country";
 import { useState, useEffect } from "react";
-
-interface Country {
-  name: { common: string };
-  flags: { png: string };
-  region: string;
-}
 
 export function useCountry() {
   const [countries, setCountries] = useState<Country[]>([]);
