@@ -40,13 +40,28 @@ export function useCountry() {
     fetchCountries();
   }, []);
 
-  const searchCountries = async (query: string) => {
-    if (!query) {
+  const searchCountries = async (countryName: string, continent?: string) => {
+    if (!countryName && continent === "All Continents") {
       fetchCountries();
       return;
     }
+
     try {
-      const data = await api({ endpoint: `/name/${query}` });
+      let endpoint = `/name/${countryName}`;
+      if (!countryName && continent !== "All Continents") {
+        endpoint = `/region/${continent}`;
+      }
+
+      const data = await api({ endpoint });
+
+      if (continent && continent !== "All Continents") {
+        const filteredData = data.filter(
+          (country: any) => country.region === continent,
+        );
+        setError(null);
+        setCountries(filteredData);
+        return;
+      }
       setError(null);
       setCountries(data);
     } catch (err: any) {

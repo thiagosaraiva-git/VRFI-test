@@ -2,9 +2,23 @@
 import { useCountry } from "@/hooks/useCountry";
 import Table from "@/components/Table/Table";
 import SearchInput from "@/components/SearchInput/SearchInput";
+import Select from "@/components/Select/Select";
+import { useState } from "react";
 
 export default function Dashboard() {
   const { countries, searchCountries, loading, error } = useCountry();
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [continent, setContinent] = useState<string>("All Continents");
+
+  const handleSearchChange = (value: string) => {
+    setSearchQuery(value);
+    searchCountries(value, continent);
+  };
+
+  const handleSelectChange = (continent: string) => {
+    setContinent(continent);
+    searchCountries(searchQuery, continent);
+  };
 
   return (
     <div className="mx-auto p-4 md:ml-52">
@@ -13,12 +27,19 @@ export default function Dashboard() {
         A database of the countries of the world
       </p>
 
-      <div className="flex mb-4 max-w-[18rem]">
-        <SearchInput
-          className="text-secondary-dark"
-          placeholder="Search"
-          onChange={(e) => searchCountries(e.target.value)}
+      <div className="flex items-center gap-4 max-w-[36rem] mb-4">
+        <Select
+          options={[
+            "All Continents",
+            "Africa",
+            "Americas",
+            "Asia",
+            "Europe",
+            "Oceania",
+          ]}
+          onChange={handleSelectChange}
         />
+        <SearchInput placeholder="Search" onChange={handleSearchChange} />
       </div>
 
       <div className="overflow-x-auto">

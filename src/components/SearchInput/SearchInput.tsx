@@ -1,15 +1,21 @@
 "use client";
 
-import { InputHTMLAttributes, useState } from "react";
+import { useState } from "react";
 import { Search } from "lucide-react";
 
-interface SearchInputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface SearchInputProps {
   placeholder: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (selectedValue: string) => void;
 }
 
 const SearchInput = ({ placeholder, onChange }: SearchInputProps) => {
   const [isFocused, setIsFocused] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (onChange) {
+      onChange(e.target.value);
+    }
+  };
 
   return (
     <div className="flex flex-col gap-1 w-full">
@@ -22,7 +28,7 @@ const SearchInput = ({ placeholder, onChange }: SearchInputProps) => {
           type="text"
           className="w-full border-none rounded-[40px] text-primary-dark outline-none focus:placeholder-primary-dark p-4 pl-12 shadow-light placeholder:text-secondary-dark focus:shadow-dark transition-shadow duration-100"
           placeholder={placeholder}
-          onChange={onChange}
+          onChange={handleChange}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
         />
