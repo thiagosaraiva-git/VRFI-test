@@ -1,6 +1,6 @@
 # 🌍 Country Info App
 
-A web application that allows users to search for and explore information about countries worldwide. 
+A web application that allows users to search for and explore information about countries worldwide.
 
 ## 📌 Features
 
