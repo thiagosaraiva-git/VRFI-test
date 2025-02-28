@@ -1,10 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useCountry } from "@/hooks/useCountry";
 import Image from "next/image";
 
-export default function Country() {
+function CountryDetails() {
   const [countryName, setCountryName] = useState<string | null>(null);
   const { country, fetchCountryDetails, loading, error } = useCountry();
   const searchParams = useSearchParams();
@@ -20,6 +20,7 @@ export default function Country() {
     if (countryName) {
       fetchCountryDetails(countryName);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countryName]);
 
   if (loading) return <p>Loading...</p>;
@@ -89,5 +90,13 @@ export default function Country() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function Country() {
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <CountryDetails />
+    </Suspense>
   );
 }
