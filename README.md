@@ -15,5 +15,4 @@ A web application that allows users to search for and explore information about 
 - **React**
 - **TypeScript**
 - **Tailwind CSS**
-- **ECharts** (for potential data visualization)
 - **API Integration** (RESTful services)
