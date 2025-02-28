@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <div className="w-auto bg-white text-primary-dark flex flex-col fixed h-full text-[16px]">
+    <div className="w-auto bg-white text-primary-dark flex-col fixed h-full text-[16px] hidden md:block">
       <div className="flex items-center justify-start p-6">
         <Image
           src="/avatar.png"
